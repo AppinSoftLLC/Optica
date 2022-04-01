@@ -39,7 +39,7 @@ class RoomsController extends AbstractController
             $entityManager->persist($room);
             $entityManager->flush();
 
-            return $this->redirectToRoute('rooms_index');
+            return $this->redirectToRoute('rooms');
         }
 
         return $this->render('rooms/new.html.twig', [
@@ -49,17 +49,7 @@ class RoomsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="rooms_show", methods={"GET"})
-     */
-    public function show(Rooms $room): Response
-    {
-        return $this->render('rooms/show.html.twig', [
-            'room' => $room,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="rooms_edit", methods={"GET","POST"})
+     * @Route("/edit/{id}", name="rooms_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Rooms $room): Response
     {
@@ -69,7 +59,7 @@ class RoomsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('rooms_index');
+            return $this->redirectToRoute('rooms');
         }
 
         return $this->render('rooms/edit.html.twig', [

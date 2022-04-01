@@ -1,67 +1,76 @@
 <div data-simplebar class="h-100">
-	<!--- Sidemenu -->
-	<div id="sidebar-menu">
-		<!-- Left Menu Start -->
-		<ul class="metismenu list-unstyled" id="side-menu">
-			<li class="menu-title" key="t-menu">Menu</li>
+  <!-- - Sidemenu -->
+  <div id="sidebar-menu">
+    <!-- Left Menu Start -->
+    <ul class="metismenu list-unstyled" id="side-menu">
+      <li class="menu-title" key="t-menu">Menu</li>
 
-			<li>
-				<a href="{{ path('dashboard') }}" class="waves-effect">
-					<i class="bx bx-home-circle"></i>
-					<span class="badge rounded-pill bg-info float-end">{{ total }}</span>
-					<span key="t-dashboards">Dashboards</span>
-				</a>
-			</li>		
+      <li>
+        <a href="{{ path('dashboard') }}" class="waves-effect">
+          <i class="bx bx-home-circle"></i>
+          <span class="badge rounded-pill bg-info float-end">{{ total }}</span>
+          <span key="t-dashboards">Dashboards</span>
+        </a>
+      </li>
 
-			<li class="menu-title" key="t-apps">Rooms</li>
+      <li class="menu-title" key="t-apps">Rooms</li>
 
-			{% for room in rooms %}
-				<li>
-					<a href="javascript: void(0);" class="has-arrow waves-effect">
-						<i class="mdi mdi-doorbell"></i>
-						<span key="t-dashboards">Room #{{ room.name }}</span>
-					</a>
-					{% if room.devices is defined %}
-						<ul class="sub-menu" aria-expanded="false">
-						{% for device in room.devices %}
-							<li>
-								<a href="{{ path('device_check', {'id': device.id}) }}">{{ device.name }}</a>
-							</li>
-						{% endfor %}
-						</ul>
-					{% endif %}
-				</li>
-			{% endfor %}
-			<li class="menu-title" key="t-components">Report</li>
+      {% for room in rooms %}
+        <li>
+          <a href="javascript: void(0);" class="has-arrow waves-effect">
+            <i class="mdi mdi-doorbell"></i>
+            <span key="t-dashboards">Room #{{ room.name }}</span>
+          </a>
+          {% if room.devices is defined %}
+            <ul class="sub-menu" aria-expanded="false">
+              {% for device in room.devices %}
+                <li>
+                  <a href="{{
+                    path(
+                      'device_check',
+                      {
+                        id: device.id
+                      }
+                    )
+                    }}">
+                    {{ device.name }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </li>
+      {% endfor %}
+      <li class="menu-title" key="t-components">Report</li>
 
-			<li>
-				<a href="javascript: void(0);" class="waves-effect">
-					<i class="bx bx-pie-chart-alt-2 "></i>
-					<span key="t-ui-elements">Report #1</span>
-				</a>
-			</li>
+      <li>
+        <a href="javascript: void(0);" class="waves-effect">
+          <i class="bx bx-pie-chart-alt-2"></i>
+          <span key="t-ui-elements">Report #1</span>
+        </a>
+      </li>
 
-			<li>
-				<a href="javascript: void(0);" class="waves-effect">
-					<i class="bx bx-bar-chart-alt-2 "></i>
-					<span key="t-forms">Report #2</span>
-				</a>
-			</li>
+      <li>
+        <a href="javascript: void(0);" class="waves-effect">
+          <i class="bx bx-bar-chart-alt-2"></i>
+          <span key="t-forms">Report #2</span>
+        </a>
+      </li>
 
-			<li>
-				<a href="javascript: void(0);" class="waves-effect">
-					<i class="bx bx-pie-chart-alt "></i>
-					<span key="t-tables">Report #3</span>
-				</a>
-			</li>
+      <li>
+        <a href="javascript: void(0);" class="waves-effect">
+          <i class="bx bx-pie-chart-alt"></i>
+          <span key="t-tables">Report #3</span>
+        </a>
+      </li>
 
-			<li>
-				<a href="javascript: void(0);" class="waves-effect">
-					<i class="bx bx-chart"></i>
-					<span key="t-charts">Report #4</span>
-				</a>
-			</li>
-		</ul>
-	</div>
-	<!-- Sidebar -->
+      <li>
+        <a href="javascript: void(0);" class="waves-effect">
+          <i class="bx bx-chart"></i>
+          <span key="t-charts">Report #4</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!-- Sidebar -->
 </div>

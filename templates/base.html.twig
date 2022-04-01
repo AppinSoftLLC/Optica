@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<title>{% block title %}Welcome!{% endblock %}</title>
+		<title>{% block title %}Welcome!{% endblock %} | Optica</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
 		<link href="/css/icons.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
@@ -11,7 +11,7 @@
 	</head>
 	<body data-sidebar="dark">
 		<div id="layout-wrapper">
-			<header id="page-toolbar">
+			<header id="page-topbar">
 				{% include "_header.html.twig" %}
 			</header>
 			<div class="vertical-menu">
@@ -19,7 +19,9 @@
 			</div>
 			<div class="main-content">
 				<div class="page-content">
-					{% block body %}{% endblock %}
+					<div class="container-fluid">
+						{% block body %}{% endblock %}
+					</div>
 				</div>
 				<footer class="footer">
 					<div class="container-fluid">
