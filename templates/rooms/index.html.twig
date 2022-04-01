@@ -9,8 +9,8 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="table-responsive">
-						<h4 class="card-title">All Rooms</h4>
-						<p class="card-title-desc">All rooms with device's</p>
+						<h4 class="card-title">Rooms List</h4>
+						<p class="card-title-desc">All rooms entire office</p>
 						<div class="table-responsive">
 							<table class="table align-middle mb-0">
 								<thead>
@@ -34,7 +34,7 @@
 									</tr>
 									{% else %}
 										<tr>
-											<td colspan="3">no records found</td>
+											<td colspan="3">No records found</td>
 										</tr>
 									{% endfor %}
 								</tbody>
@@ -42,10 +42,12 @@
 						</div>
 					</div>
 				</div>
-				<div class="card-footer bg-transparent text-muted text-end">
-					<a class="btn btn-success waves-effect waves-light" href="{{ path('rooms_new') }}">Create new</a>
-				</div>
 			</div>
 		</div>
+	</div>
+	<div class="position-absolute" style="bottom: 80px; right: 24px;">
+		<a class="btn btn-rounded btn-success waves-effect waves-light" href="{{ path('rooms_new') }}">
+			<span class="mdi mdi-plus"></span>
+		</a>
 	</div>
 {% endblock %}

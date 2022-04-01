@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CheckupItem{% endblock %}
+
+{% block body %}
+    {% include "_page_title.html.twig" with {'title': 'Checkup Items', 'main': 'Setting', 'current': 'New Checkup Item'} %}
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb4">New Checkup Item</h4>
+                    {{ include('checkupitem/_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
