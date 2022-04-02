@@ -24,23 +24,23 @@ class Status
     /**
      * @var string
      *
-     * @ORM\Column(name="Title", type="string", length=255, nullable=false)
+     * @ORM\Column(name="Titles", type="string", length=255, nullable=false)
      */
-    private $title;
+    private $titles;
 
     public function getId()
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getTitles(): ?string
     {
-        return $this->title;
+        return $this->titles;
     }
 
-    public function setTitle(string $title): self
+    public function setTitles(string $titles): self
     {
-        $this->title = $title;
+        $this->titles = $titles;
 
         return $this;
     }
