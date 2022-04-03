@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Devices
  *
  * @ORM\Table(name="devices", indexes={@ORM\Index(name="devices_fk1", columns={"RoomID"}), @ORM\Index(name="devices_fk2", columns={"StatusID"})})
- * @ORM\Entity(repositoryClass="App\Repository\DevicesRepository")
+ * @ORM\Entity
  */
 class Devices
 {
@@ -36,6 +36,20 @@ class Devices
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="Maker", type="string", length=255, nullable=false)
+     */
+    private $maker;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Model", type="string", length=255, nullable=false)
+     */
+    private $model;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="Produced", type="integer", nullable=false)
@@ -52,7 +66,7 @@ class Devices
     /**
      * @var \Rooms
      *
-     * @ORM\ManyToOne(targetEntity="Rooms", inversedBy="devices")
+     * @ORM\ManyToOne(targetEntity="Rooms")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="RoomID", referencedColumnName="ID")
      * })
@@ -94,6 +108,30 @@ class Devices
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getMaker(): ?string
+    {
+        return $this->maker;
+    }
+
+    public function setMaker(string $maker): self
+    {
+        $this->maker = $maker;
+
+        return $this;
+    }
+
+    public function getModel(): ?string
+    {
+        return $this->model;
+    }
+
+    public function setModel(string $model): self
+    {
+        $this->model = $model;
 
         return $this;
     }

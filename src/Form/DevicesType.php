@@ -2,28 +2,31 @@
 
 namespace App\Form;
 
-use App\Entity\Status;
+use App\Entity\Devices;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class StatusType extends AbstractType
+class DevicesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('titles', TextType::class, [
-            'label' => 'Status:',
-            'label_attr' => ['class' => 'col-sm-3 col-form-label text-end'],
-            'attr' => ['class' => 'form-control'],
-        ]);
+            ->add('serial')
+            ->add('name')
+            ->add('maker')
+            ->add('model')
+            ->add('produced')
+            ->add('price')
+            ->add('roomid')
+            ->add('statusid')
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Status::class,
+            'data_class' => Devices::class,
         ]);
     }
 }

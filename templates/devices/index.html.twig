@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devices index{% endblock %}
+
+{% block body %}
+    <h1>Devices index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Serial</th>
+                <th>Name</th>
+                <th>Maker</th>
+                <th>Model</th>
+                <th>Produced</th>
+                <th>Price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for device in devices %}
+            <tr>
+                <td>{{ device.id }}</td>
+                <td>{{ device.serial }}</td>
+                <td>{{ device.name }}</td>
+                <td>{{ device.maker }}</td>
+                <td>{{ device.model }}</td>
+                <td>{{ device.produced }}</td>
+                <td>{{ device.price }}</td>
+                <td>
+                    <a href="{{ path('devices_edit', {'id': device.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('devices_new') }}">Create new</a>
+{% endblock %}
