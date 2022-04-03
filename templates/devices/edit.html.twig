@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Devices{% endblock %}
+{% block title %}Edit Device{% endblock %}
 
 {% block body %}
-    <h1>Edit Devices</h1>
-
-    {{ include('devices/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('devices_index') }}">back to list</a>
-
-    {{ include('devices/_delete_form.html.twig') }}
+    {% include "_page_title.html.twig" with {'title': 'Devices', 'main': 'Setting', 'current': 'Edit Device'} %}
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Edit Device</h4>
+                    {{ include('devices/_form.html.twig', {'button_label': 'Update'}) }}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

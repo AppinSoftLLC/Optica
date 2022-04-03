@@ -70,7 +70,7 @@ class DevicesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('devices_index');
+            return $this->redirectToRoute('devices');
         }
 
         return $this->render('devices/edit.html.twig', [

@@ -1,4 +1,46 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="mb-4">
+        {{ form_label(form.serial) }}
+        {{ form_widget(form.serial) }}
+    </div>
+    <div class="mb-4">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name) }}
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            {{ form_label(form.maker) }}
+            {{ form_widget(form.maker) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_label(form.model) }}
+            {{ form_widget(form.model) }}
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            {{ form_label(form.produced) }}
+            {{ form_widget(form.produced) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_label(form.price) }}
+            {{ form_widget(form.price) }}
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            {{ form_label(form.statusid) }}
+            {{ form_widget(form.statusid) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_label(form.roomid) }}
+            {{ form_widget(form.roomid) }}
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-12 text-end">
+            <button class="btn btn-success w-md">{{ button_label|default('Save') }}</button>
+            <a href="{{ path('devices') }}" class="btn btn-secondary waves-effect waves-light">Back to list</a>
+        </div>
+    </div>
 {{ form_end(form) }}
