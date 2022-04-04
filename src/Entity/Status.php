@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Status
+ * Statuss
  *
  * @ORM\Table(name="status")
  * @ORM\Entity(repositoryClass="App\Repository\StatusRepository")
@@ -13,9 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
 class Status
 {
     /**
-     * @var bool
+     * @var int
      *
-     * @ORM\Column(name="ID", type="boolean", nullable=false)
+     * @ORM\Column(name="ID", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -24,23 +24,23 @@ class Status
     /**
      * @var string
      *
-     * @ORM\Column(name="Titles", type="string", length=255, nullable=false)
+     * @ORM\Column(name="Title", type="string", length=255, nullable=false)
      */
-    private $titles;
+    private $title;
 
     public function getId()
     {
         return $this->id;
     }
 
-    public function getTitles(): ?string
+    public function getTitle(): ?string
     {
-        return $this->titles;
+        return $this->title;
     }
 
-    public function setTitles(string $titles): self
+    public function setTitle(string $title): self
     {
-        $this->titles = $titles;
+        $this->title = $title;
 
         return $this;
     }

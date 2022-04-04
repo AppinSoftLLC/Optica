@@ -55,7 +55,7 @@ class DevicesType extends AbstractType
             ])
             ->add('statusid', EntityType::class, [
                 'class' => Status::class,
-                'choice_label' => 'titles',
+                'choice_label' => 'title',
                 'label' => 'Status:',
                 'label_attr' => ['class' => 'col-form-label'],
                 'attr' => ['class' => 'form-select'],

@@ -35,8 +35,8 @@
                                         <td class="ps-0">{{ device.name }}</td>
                                         <td class="ps-0">{{ device.maker }} {{ device.model }}</td>
                                         <td class="ps-0">{{ device.produced }}</td>
-                                        <td class="ps-0">{{ device.price }}</td>
-                                        <td class="ps-0">{{ device.statusid.titles }}</td>
+                                        <td class="ps-0">{{ device.price|number_format() }}</td>
+                                        <td class="ps-0">{{ device.statusid.title }}</td>
                                         <td class="ps-0">{{ device.roomid.name }}</td>
 										<td class="ps-0">
 											<div class="d-flex">

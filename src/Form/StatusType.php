@@ -13,7 +13,7 @@ class StatusType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('titles', TextType::class, [
+        ->add('title', TextType::class, [
             'label' => 'Status:',
             'label_attr' => ['class' => 'col-sm-3 col-form-label text-end'],
             'attr' => ['class' => 'form-control'],
