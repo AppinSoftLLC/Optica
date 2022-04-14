@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Checkup index{% endblock %}
+
+{% block body %}
+    <h1>Checkup index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Dates</th>
+                <th>Values</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for checkup in checkups %}
+            <tr>
+                <td>{{ checkup.id }}</td>
+                <td>{{ checkup.dates ? checkup.dates|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ checkup.values ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('checkup_show', {'id': checkup.id}) }}">show</a>
+                    <a href="{{ path('checkup_edit', {'id': checkup.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('checkup_new') }}">Create new</a>
+{% endblock %}

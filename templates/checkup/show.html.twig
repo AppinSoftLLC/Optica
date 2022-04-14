@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Checkup{% endblock %}
+
+{% block body %}
+    <h1>Checkup</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ checkup.id }}</td>
+            </tr>
+            <tr>
+                <th>Dates</th>
+                <td>{{ checkup.dates ? checkup.dates|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Values</th>
+                <td>{{ checkup.values ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('checkup_index') }}">back to list</a>
+
+    <a href="{{ path('checkup_edit', {'id': checkup.id}) }}">edit</a>
+
+    {{ include('checkup/_delete_form.html.twig') }}
+{% endblock %}

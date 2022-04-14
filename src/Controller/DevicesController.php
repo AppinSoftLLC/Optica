@@ -34,14 +34,6 @@ class DevicesController extends AbstractController
     }
 
     /**
-     * @Route("/check/{id}", name="device_check", methods={"GET"})
-     */
-    public function show(): Response
-    {
-        return $this->render('dashboard/device.html.twig');
-    }
-
-    /**
      * @Route("/new", name="devices_new", methods={"GET","POST"})
      */
     public function new(Request $request, CheckupitemRepository $checkupitemRepository): Response

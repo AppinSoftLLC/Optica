@@ -22,7 +22,7 @@
 						<ul class="sub-menu" aria-expanded="false">
 							{% for device in room.devices %}
 								<li>
-									<a href="{{path('device_check',{id: device.id})}}">
+									<a href="{{path('check_up_device',{id: device.id})}}">
 										{{ device.name }}
 									</a>
 								</li>
