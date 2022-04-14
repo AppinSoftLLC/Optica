@@ -5,9 +5,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<title>{% block title %}Welcome!{% endblock %} | Optica</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link href="/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-		<link href="/css/icons.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-		<link href="/css/app.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+		{% block stylesheet_libs %}
+		<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="/css/toastr.min.css" rel="stylesheet" type="text/css" />
+		{% endblock %}
+		{% block stylesheet_apps %}
+		<link href="/css/app.min.css" rel="stylesheet" type="text/css" />
+		{% endblock %}
 	</head>
 	<body data-sidebar="dark">
 		<div id="layout-wrapper">
@@ -39,11 +44,16 @@
 				</footer>
 			</div>
 		</div>
-		<script src="/js/jquery.min.js"></script>
-		<script src="/js/bootstrap.bundle.min.js"></script>
-		<script src="/js/metisMenu.min.js"></script>
-		<script src="/js/simplebar.min.js"></script>
-		<script src="/js/waves.min.js"></script>
-		<script src="/js/app.js"></script>
+		{% block javascript_libs %}
+			<script src="/js/jquery.min.js"></script>
+			<script src="/js/bootstrap.bundle.min.js"></script>
+			<script src="/js/metisMenu.min.js"></script>
+			<script src="/js/simplebar.min.js"></script>
+			<script src="/js/waves.min.js"></script>
+    		<script src="/js/toastr.min.js"></script>
+		{% endblock %}
+		{% block javascript_apps %}
+			<script src="/js/app.js"></script>
+		{% endblock %}
 	</body>
 </html>

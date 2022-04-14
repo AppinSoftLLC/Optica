@@ -1,11 +1,13 @@
 {{ form_start(form) }}
-    <div class="mb-4">
-        {{ form_label(form.serial) }}
-        {{ form_widget(form.serial) }}
-    </div>
-    <div class="mb-4">
-        {{ form_label(form.name) }}
-        {{ form_widget(form.name) }}
+    <div class="row mb-4">
+        <div class="col-md-4">
+            {{ form_label(form.serial) }}
+            {{ form_widget(form.serial) }}
+        </div>
+        <div class="col-md-8">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+        </div>
     </div>
     <div class="row mb-4">
         <div class="col-md-4">
@@ -33,6 +35,35 @@
         <div class="col-md-4">
             {{ form_label(form.roomid) }}
             {{ form_widget(form.roomid) }}
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h4 class="card-title mb-3">Check Items</h4>
+            <ul class="message-list">
+                {% for check in device.devicescheck %}
+                    <li data-id={{ check.checkitemid.id }}>
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ check.checkitemid.title }}" readonly />
+                            <button type="button" class="btn btn-primary delete-check">Delete</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <label class="form-label">Check Item</label>
+            <div class="input-group">
+                <select class="form-select check">
+                    <option value="0">Select</option>
+                    {% for item in checkitems %}
+                        <option value="{{ item.id }}">{{ item.title }}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn btn-primary add-item" type="button">Add</button>
+            </div>
         </div>
     </div>
     <div class="row mb-4">

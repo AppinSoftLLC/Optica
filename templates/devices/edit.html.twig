@@ -2,6 +2,22 @@
 
 {% block title %}Edit Device{% endblock %}
 
+{% block stylesheet_libs %}
+{{ parent() }}
+        <link href="/css/select2.min.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block javascript_libs %}
+    {{ parent() }}
+    <script src="/js/select2.min.js"></script>
+    <script src="/js/devices.js"></script>
+{% endblock %}
+
+{% block javascript_apps %}
+    {{ parent() }}
+    {# <script src="/js/form-advanced.init.js"></script> #}
+{% endblock %}
+
 {% block body %}
     {% include "_page_title.html.twig" with {'title': 'Devices', 'main': 'Setting', 'current': 'Edit Device'} %}
     <div class="row">

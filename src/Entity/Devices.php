@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -82,6 +84,18 @@ class Devices
      * })
      */
     private $statusid;
+
+    /**
+     * @var \DevicesCheck
+     * 
+     * @ORM\OneToMany(targetEntity="DevicesCheck", mappedBy="deviceid")
+     */
+    private $devicescheck;
+
+    public function __construct()
+    {
+        $this->devicescheck = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -184,5 +198,46 @@ class Devices
         return $this;
     }
 
+    public function addDevicescheck(DevicesCheck $devicescheck): self
+    {
+        if (!$this->devicescheck->contains($devicescheck)) {
+            $this->devicescheck[] = $devicescheck;
+            $devicescheck->setCheckitemid($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDevicecheck(DevicesCheck $devicescheck): self
+    {
+        if ($this->devicescheck->removeElement($devicescheck)) {
+            // set the owning side to null (unless already changed)
+            if ($devicescheck->getCheckitemid() === $this) {
+                $devicescheck->setCheckitemid(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|DevicesCheck[]
+     */
+    public function getDevicescheck(): Collection
+    {
+        return $this->devicescheck;
+    }
+
+    public function removeDevicescheck(DevicesCheck $devicescheck): self
+    {
+        if ($this->devicescheck->removeElement($devicescheck)) {
+            // set the owning side to null (unless already changed)
+            if ($devicescheck->getDeviceid() === $this) {
+                $devicescheck->setDeviceid(null);
+            }
+        }
+
+        return $this;
+    }
 
 }

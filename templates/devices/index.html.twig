@@ -16,7 +16,7 @@
 							<table class="table align-middle mb-0">
 								<thead>
 									<tr>
-                                        <th style="width: 52px">#</th>
+                                        <th class="ps-0" style="width: 52px">#</th>
                                         <th class="ps-0">Serial</th>
                                         <th class="ps-0">Name</th>
                                         <th class="ps-0">Model</th>
@@ -30,7 +30,7 @@
 								<tbody>
 									{% for device in devices %}
 									<tr>
-										<td>{{ loop.index }}.</td>
+										<td class="ps-0">{{ loop.index }}.</td>
 										<td class="ps-0">{{ device.serial }}</td>
                                         <td class="ps-0">{{ device.name }}</td>
                                         <td class="ps-0">{{ device.maker }} {{ device.model }}</td>

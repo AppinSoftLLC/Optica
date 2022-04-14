@@ -2,6 +2,15 @@
 
 {% block title %}New Device{% endblock %}
 
+{% block stylesheet_libs %}
+{{ parent() }}
+{% endblock %}
+
+{% block javascript_libs %}
+    {{ parent() }}
+    <script src="/js/devices.js"></script>
+{% endblock %}
+
 {% block body %}
     {% include "_page_title.html.twig" with {'title': 'Devices', 'main': 'Setting', 'current': 'New Device'} %}
     <div class="row">
