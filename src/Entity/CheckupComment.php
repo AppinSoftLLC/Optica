@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * CheckupComment
  *
- * @ORM\Table(name="checkup_comment", indexes={@ORM\Index(name="checkup_comment_fk1", columns={"CheckupID"})})
+ * @ORM\Table(name="checkup_comment", indexes={@ORM\Index(name="checkup_comment_fk1", columns={"DeviceID"})})
  * @ORM\Entity(repositoryClass="App\Repository\CheckupCommentRepository")
  */
 class CheckupComment
@@ -22,6 +22,13 @@ class CheckupComment
     private $id;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="Dates", type="datetime", nullable=false)
+     */
+    private $dates;
+
+    /**
      * @var string|null
      *
      * @ORM\Column(name="Comments", type="text", length=65535, nullable=true)
@@ -29,18 +36,30 @@ class CheckupComment
     private $comments;
 
     /**
-     * @var \Checkup
+     * @var \Devices
      *
-     * @ORM\ManyToOne(targetEntity="Checkup")
+     * @ORM\ManyToOne(targetEntity="Devices")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="CheckupID", referencedColumnName="ID")
+     *   @ORM\JoinColumn(name="DeviceID", referencedColumnName="ID")
      * })
      */
-    private $checkupid;
+    private $deviceid;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getDates(): ?\DateTimeInterface
+    {
+        return $this->dates;
+    }
+
+    public function setDates(\DateTimeInterface $dates): self
+    {
+        $this->dates = $dates;
+
+        return $this;
     }
 
     public function getComments(): ?string
@@ -55,14 +74,14 @@ class CheckupComment
         return $this;
     }
 
-    public function getCheckupid(): ?Checkup
+    public function getDeviceid(): ?Devices
     {
-        return $this->checkupid;
+        return $this->deviceid;
     }
 
-    public function setCheckupid(?Checkup $checkupid): self
+    public function setDeviceid(?Devices $deviceid): self
     {
-        $this->checkupid = $checkupid;
+        $this->deviceid = $deviceid;
 
         return $this;
     }

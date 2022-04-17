@@ -31,9 +31,9 @@ class Checkup
     /**
      * @var bool
      *
-     * @ORM\Column(name="Values", type="boolean", nullable=false)
+     * @ORM\Column(name="State", type="boolean", nullable=false)
      */
-    private $values;
+    private $state;
 
     /**
      * @var \Devices
@@ -72,14 +72,14 @@ class Checkup
         return $this;
     }
 
-    public function getValues(): ?bool
+    public function getState(): ?bool
     {
-        return $this->values;
+        return $this->state;
     }
 
-    public function setValues(bool $values): self
+    public function setState(bool $state): self
     {
-        $this->values = $values;
+        $this->state = $state;
 
         return $this;
     }

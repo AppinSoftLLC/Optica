@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Checkup;
+use App\Entity\CheckupComment;
+use App\Entity\CheckupItem;
 use App\Entity\Devices;
 use App\Entity\DevicesCheck;
 use App\Form\CheckupType;
@@ -27,24 +29,38 @@ class CheckupController extends AbstractController
 
         $checks = $deviceCheckRepository->findBy(array('deviceid' => $request->get('id')));
 
-        foreach($checks as $check) {
-            echo $check->getCheckitemid()->getTitle() . '<br />';
-        }
-
         $checkup = new Checkup();
         $form = $this->createForm(CheckupType::class, $checkup);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($checkup);
+            $checks = $request->get('checks');
+
+            foreach($checks as $i => $check) {
+                $checkup = new Checkup();
+                $checkup->setDates(new \DateTime());
+                $checkup->setDeviceid($device);
+                $checkup->setCheckupitemid($entityManager->getRepository(CheckupItem::class)->find($i));
+                $checkup->setState($check);
+                $entityManager->persist($checkup);
+            }
+
+            if($request->get('comment') && strlen(trim($request->get('comment'))) > 0) {
+                $comment = new CheckupComment();
+                $comment->setDates(new \DateTime());
+                $comment->setDeviceid($device);
+                $comment->setComments(trim($request->get('comment')));
+                $entityManager->persist($comment);
+            }
             $entityManager->flush();
 
-            return $this->redirectToRoute('checkup_index');
+            return $this->redirectToRoute('dashboard');
         }
 
         return $this->render('checkup/new.html.twig', [
             'device' => $device,
+            'checks' => $checks,
             'form' => $form->createView(),
         ]);
     }
