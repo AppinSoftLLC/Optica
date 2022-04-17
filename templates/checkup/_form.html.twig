@@ -1,5 +1,30 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    <table class="table">
+    	<thead class="table-light">
+        	<tr>
+				<th style="width: 50px;">#</th>
+            	<th>Name</th>
+            	<th class="text-center" style="width: 80px;">Normal</th>
+            	<th class="text-center" style="width: 100px">Abnormal</th>
+        	</tr>
+    	</thead>
+        <tbody>
+			{% for check in checks %}     
+				<tr>
+					<td>{{ loop.index }}.</td>
+					<td>{{ check.checkitemid.title }}</td>
+					<td class="text-center"><input type="radio" name="checks[{{ check.checkitemid.id }}]" class="form-check-input" value="1" /></td>
+					<td class="text-center"><input type="radio" name="checks[{{ check.checkitemid.id }}]" class="form-check-input" value="0" /></td>
+				</tr>
+        	{% endfor %}
+        </tbody>
+    </table>
+	<div class="row mb-4">
+		<div class="col-md-12">
+			<label for="comments">Comment</label>
+			<textarea id="comments" name="comment" class="form-control" rows="5"></textarea>
+		</div>
+	</div>
     <div class="row">
         <div class="col-md-12 text-end">
             <button class="btn btn-success w-md">{{ button_label|default('Save') }}</button>
