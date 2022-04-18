@@ -19,6 +19,13 @@ class CheckupitemRepository extends ServiceEntityRepository
         parent::__construct($registry, CheckupItem::class);
     }
 
+    public function findyByTotal() {
+        return $this->createQueryBuilder('c')
+            ->select('Count(c.id) ')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     // /**
     //  * @return CheckupItem[] Returns an array of CheckupItem objects
     //  */
@@ -48,5 +55,3 @@ class CheckupitemRepository extends ServiceEntityRepository
     }
     */
 }
-
-?>

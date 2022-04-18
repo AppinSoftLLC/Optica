@@ -25,8 +25,16 @@ class RoomsRepository extends ServiceEntityRepository
             ->orderBy('r.name', 'ASC')
             ->getQuery()
             ->getResult();
-            
+
         return $rooms;
+    }
+
+    public function findByTotal()
+    {
+        return $this->createQueryBuilder('r')
+            ->select('Count(r.id) ')
+            ->getQuery()
+            ->getSingleScalarResult();
     }
     // /**
     //  * @return Rooms[] Returns an array of Rooms objects
@@ -57,5 +65,3 @@ class RoomsRepository extends ServiceEntityRepository
     }
     */
 }
-
-?>
