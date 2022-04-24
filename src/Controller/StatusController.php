@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Status;
 use App\Form\StatusType;
 use App\Repository\StatusRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,7 +53,7 @@ class StatusController extends AbstractController
     /**
      * @Route("/edit/{id}", name="status_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Status $status): Response
+    public function edit(Request $request, Status $status, ManagerRegistry $doctrine): Response
     {
         $form = $this->createForm(StatusType::class, $status);
         $form->handleRequest($request);

@@ -8,6 +8,7 @@ use App\Entity\DevicesCheck;
 use App\Form\DevicesType;
 use App\Repository\CheckupitemRepository;
 use App\Repository\DeviceCheckRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

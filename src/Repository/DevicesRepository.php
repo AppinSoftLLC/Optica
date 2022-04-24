@@ -23,8 +23,7 @@ class DevicesRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('d')
             ->select('count(d.id)')
             ->getQuery()
-            ->getSingleScalarResult()
-        ;
+            ->getSingleScalarResult();
     }
 
     // /**
@@ -56,5 +55,3 @@ class DevicesRepository extends ServiceEntityRepository
     }
     */
 }
-
-?>

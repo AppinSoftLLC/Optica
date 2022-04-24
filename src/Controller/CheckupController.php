@@ -5,8 +5,6 @@ namespace App\Controller;
 use App\Entity\Checkup;
 use App\Entity\CheckupComment;
 use App\Entity\CheckupItem;
-use App\Entity\Devices;
-use App\Entity\DevicesCheck;
 use App\Form\CheckupType;
 use App\Repository\DeviceCheckRepository;
 use App\Repository\DevicesRepository;

@@ -19,15 +19,15 @@ class CheckupCommentRepository extends ServiceEntityRepository
         parent::__construct($registry, CheckupComment::class);
     }
 
-    public function findByToday() {
-
+    public function findByToday()
+    {
         $today = new \DateTime();
 
         return $this->createQueryBuilder('c')
-        ->where('c.dates LIKE :t')
-        ->setParameter('t', '%'.$today->format('Y-m-d').'%')
-        ->getQuery()
-        ->getResult();
+            ->where('c.dates LIKE :t')
+            ->setParameter('t', '%' . $today->format('Y-m-d') . '%')
+            ->getQuery()
+            ->getResult();
     }
 
     // /**

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Checkup;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -17,6 +18,36 @@ class CheckupRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Checkup::class);
+    }
+
+    public function findByTodayTotal()
+    {
+        $today = new \DateTime();
+
+        // $sub =  $this->createQueryBuilder('d')
+        //     ->select('d.deviceid')
+        //     ->where('d.dates LIKE :t')
+        //     ->setParameter('t', $today->format('Y-m-d'))
+        //     ->groupBy('d.deviceid')
+        //     ->getSQL();
+
+        //     echo $sub;
+
+
+        // $q=  $this->createQueryBuilder('s')
+        //     ->select('count(s.id)')
+        //     // ->from($sub)
+        //     ->getQuery();
+        //     // ->getSingleScalarResult();
+
+        //     echo $q->getSql();
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT count(*) as t FROM (SELECT deviceid FROM checkup WHERE dates LIKE '%".$today->format('Y-m-d')."%' GROUP BY DeviceID) as checkuptoday;";
+        $stsm = $conn->prepare($sql);
+        $stsm->execute();
+        $result = $stsm->fetchAllAssociative();
+
+        return $result[0]['t'];
     }
 
     // /**
@@ -48,5 +79,3 @@ class CheckupRepository extends ServiceEntityRepository
     }
     */
 }
-
-?>

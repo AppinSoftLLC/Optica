@@ -57,5 +57,3 @@ class DeviceCheckRepository extends ServiceEntityRepository
     }
     */
 }
-
-?>
