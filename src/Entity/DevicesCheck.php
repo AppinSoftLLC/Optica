@@ -24,7 +24,7 @@ class DevicesCheck
     /**
      * @var \Devices
      *
-     * @ORM\ManyToOne(targetEntity="Devices")
+     * @ORM\ManyToOne(targetEntity="Devices", inversedBy="devicescheck")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="DeviceID", referencedColumnName="ID")
      * })

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>Orbita Report</title>
+		<link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700&subset=latin,cyrillic-ext'/>
+		{% block stylesheets %}
+			<link href="{{ asset('css/print.css') }}" rel="stylesheet"/>
+		{% endblock %}
+		<style>
+			@import url('/css/print.css') print;
+			@media print {
+				body,
+				.a4 {
+					background-color: transparent;
+					margin: 0;
+					padding: 0;
+					box-shadow: none;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		{% block body %}{% endblock %}
+	</body>
+</html>

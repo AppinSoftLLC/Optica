@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ReportController!{% endblock %}
+
+{% block body %}
+    {% include "_page_title.html.twig" with {'title': 'Reports', 'main': 'Home', 'current': 'Reports'} %}
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <h5 class="card-header bg-transparent border-bottom">Single Device Report</h5>
+                <div class="card-body">
+                    <form class="row row-cols-lg-auto g-3 align-items-center">
+                        <div class="col-4">Device</div>
+                        <div class="col-4">Start date</div>
+                        <div class="col-4">End</div>
+                        <div class="col-4">Device</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <h5 class="card-header bg-transparent border-bottom">All Device Report</h5>
+                <div class="card-body">
+                    <form class="row row-cols-lg-auto g-3 align-items-center"   >
+                        <div class="col-4">Start date</div>
+                        <div class="col-4">End</div>
+                        <div class="col-4">Device</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <h5 class="card-header bg-transparent border-bottom">Abnormal Device Report</h5>
+                <div class="card-body">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

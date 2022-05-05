@@ -68,7 +68,7 @@ class Devices
     /**
      * @var \Rooms
      *
-     * @ORM\ManyToOne(targetEntity="Rooms")
+     * @ORM\ManyToOne(targetEntity="Rooms", inversedBy="devices")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="RoomID", referencedColumnName="ID")
      * })
