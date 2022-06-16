@@ -12,6 +12,7 @@ class BaseController extends AbstractController
 {
     public function rooms(RoomsRepository $roomsRepository, DevicesRepository $devicesRepository): Response
     {
+
         return $this->render('_sidebar.html.twig', [
             'total' => $devicesRepository->findByTotal(),
             'rooms' => $roomsRepository->findByAll(),
