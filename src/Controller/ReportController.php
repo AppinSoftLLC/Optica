@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\RoomsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -26,11 +27,17 @@ class ReportController extends AbstractController
     /**
      * @Route("/single", name="report_single")
      */
-    public function single(RoomsRepository $roomsRepository): Response
+    public function single(Request $request, RoomsRepository $roomsRepository): Response
     {
-        return $this->render('report/report.html.twig', [
-            'rooms' => $roomsRepository->findByAll(),
-        ]);
+        if($request->isMethod('POST')) {
+            return $this->render('report/report.single.html.twig', [
+                // 'rooms' => $roomsRepository->findByAll(),
+            ]);
+        } else {
+            return $this->render('report/report.html.twig', [
+                'rooms' => $roomsRepository->findByAll(),
+            ]);
+        }
     }
     
     /**
