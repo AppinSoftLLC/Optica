@@ -44,8 +44,8 @@ class CheckupRepository extends ServiceEntityRepository
         $conn = $this->getEntityManager()->getConnection();
         $sql = "SELECT count(*) as t FROM (SELECT deviceid FROM checkup WHERE dates LIKE '%".$today->format('Y-m-d')."%' GROUP BY DeviceID) as checkuptoday;";
         $stsm = $conn->prepare($sql);
-        $stsm->execute();
-        $result = $stsm->fetchAllAssociative();
+        $resultSet = $stsm->executeQuery();
+        $result = $resultSet->fetchAllAssociative();
 
         return $result[0]['t'];
     }
