@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\CheckupComment;
+use DateInterval;
+use DatePeriod;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -28,6 +30,26 @@ class CheckupCommentRepository extends ServiceEntityRepository
             ->setParameter('t', '%' . $today->format('Y-m-d') . '%')
             ->getQuery()
             ->getResult();
+    }
+
+    public function findByAbnormalReport($start, $end)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.dates BETWEEN :cdate and :edate')
+            ->setParameter('cdate', $start)
+            ->setParameter('edate', $end)
+            ->orderBy('c.dates, c.deviceid')
+            ->getQuery()
+            ->getResult();
+
+        // foreach ($q as $s) {
+        //     $tmp = array();
+        //     $tmp['day'] = $s->getDates();
+        //     $tmp['device'] = $s->getDeviceId()->getName();
+        //     $tmp['comment'] = $s->getComments();
+        //     $data[] = $tmp;
+        // }
+        // return $data;
     }
 
     // /**

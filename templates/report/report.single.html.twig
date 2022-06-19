@@ -1,17 +1,63 @@
- {% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Reports{% endblock %}
 
 {% block body %}
-    {% include "_page_title.html.twig" with {'title': 'Reports', 'main': 'Home', 'current': 'Reports'} %}
-    <div class="row">
-        <div class="col-xl-12">
-            <div class="card">
-                <h5 class="card-header bg-transparent border-bottom">Single Device Report</h5>
-                <div class="card-body">
-                    
+    {% include "_page_title.html.twig" with {'title': 'Reports', 'main': 'Home', 'current': 'Single Device Report'} %}
+    {% for checkup in checkups %}
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                    <h4 class="card-title bg-transparent">{{ device.name }}: {{ checkup.day }}</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 50px">#</th>
+                                    <th>Name</th>
+                                    <th style="width: 120px">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for single in checkup.data %}
+                                    <tr>
+                                        <td>{{ loop.index }}.</td>
+                                        <td>{{ single.name }}</td>
+                                        <td>{{ single.status }}</td>
+                                    </tr>
+                                {% endfor %}
+
+                                {% if checkup.comment %}
+                                    <tr>
+                                        <td colspan="3">{{ checkup.comment }}</td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    {% else %}
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 50px">#</th>
+                                    <th>Name</th>
+                                    <th style="width: 120px">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <td colspan="3">No records found</td>                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}

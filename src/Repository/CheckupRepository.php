@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Checkup;
+use DateInterval;
+use DatePeriod;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -42,12 +43,57 @@ class CheckupRepository extends ServiceEntityRepository
 
         //     echo $q->getSql();
         $conn = $this->getEntityManager()->getConnection();
-        $sql = "SELECT count(*) as t FROM (SELECT deviceid FROM checkup WHERE dates LIKE '%".$today->format('Y-m-d')."%' GROUP BY DeviceID) as checkuptoday;";
+        $sql = "SELECT count(*) as t FROM (SELECT deviceid FROM checkup WHERE dates LIKE '%" . $today->format('Y-m-d') . "%' GROUP BY DeviceID) as checkuptoday;";
         $stsm = $conn->prepare($sql);
         $resultSet = $stsm->executeQuery();
         $result = $resultSet->fetchAllAssociative();
 
         return $result[0]['t'];
+    }
+
+    public function findBySingleReport($device, $start, $end)
+    {
+        $data = array();
+        $sDate = new \DateTime($start);
+        $eDate = new \DateTime($end);
+
+        $interval = DateInterval::createFromDateString(('1 day'));
+        $period = new DatePeriod($sDate, $interval, $eDate);
+
+        foreach ($period as $dt) {
+            $tmp = array();
+            $tmp['day'] = $dt->format('Y-m-d');
+            $tmp['comment'] = null;
+
+            $q = $this->createQueryBuilder('d')
+                ->where('d.deviceid = :device')
+                ->andWhere('d.dates LIKE :cdate')
+                ->setParameter('device', $device)
+                ->setParameter('cdate', '%' . $dt->format('Y-m-d') . '%')
+                ->orderBy('d.dates, d.deviceid, d.checkupitemid')
+                ->getQuery()
+                ->getResult();
+
+            foreach ($q as $i => $s) {
+                $tmp['data'][$i] = array('name' => $s->getCheckupitemid()->getTitle(), 'status' => $s->getState() ? 'normal' : 'abnormal');
+            }
+
+            $conn = $this->getEntityManager()->getConnection();
+            $sql = "SELECT comments FROM checkup_comment WHERE deviceid = '{$device}' AND dates LIKE '%{$dt->format('Y-m-d')}%'";
+            $stsm = $conn->prepare($sql);
+            $resultSet = $stsm->executeQuery();
+            $result = $resultSet->fetchAllAssociative();
+
+            if($result) {
+                $tmp['comment'] = $result[0]['comments'];
+            }
+            
+            if (isset($tmp['data']) && count($tmp['data']) > 0) {
+                $data[] = $tmp;
+            }
+        }
+
+        return $data;
     }
 
     // /**
