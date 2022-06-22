@@ -1,20 +1,69 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!{% endblock %}
+{% block title %}Password Change{% endblock %}
+{% block stylesheet_libs %}
+    {{ parent() }}
+    <link href="/css/html5imageupload.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block javascript_libs %}
+    {{ parent() }}
+    <script src="/js/html5imageupload.min.js"></script>
+{% endblock %}
+
+{% block javascript_apps %}
+    {{ parent() }}
+    <script src="/js/user.js"></script>
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/www/monthlyreport/src/Controller/UserController.php'|file_link(0) }}">src/Controller/UserController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/www/monthlyreport/templates/user/index.html.twig'|file_link(0) }}">templates/user/index.html.twig</a></code></li>
-    </ul>
+{% include "_page_title.html.twig" with {'title': 'Profile', 'main': 'User', 'current': 'Profile'} %}
+<div class="rows">
+		<div class="col-xl-12">
+			<div class="card">
+				<div class="card-body">
+                    <form action="{{ path('profile')}}" class="mt-5 mb-5" method="post">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <center class="mb-4">
+                                    <div class="dropzone" data-originalsize="false" data-width="200" data-height="200" data-field="image"
+                                        data-image="{{ app.user.image ? app.user.image : '/images/user-1jpg' }}" data-editstart="false"
+                                        data-dimensionsonly="false" data-url="/user/upload" data-removeurl="/user/remove"
+                                        style="width: 200px;">
+                                        <input type="file" name="thumb" />
+                                    </div>
+                                </center>
+                                <input id="image" class="form-control" type="text" name="image" value="{{ app.user.image }}" required readonly="readonly"/>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 text-end control-label col-form-label">Username:</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" type="text" name="username" value="{{ app.user.username }}" required />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 text-end control-label col-form-label">Name:</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" type="text" name="name" value="{{ app.user.name }}" required />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 text-end control-label col-form-label">Email:</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" type="email" name="email" value="{{ app.user.email }}" required />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 text-end">
+                                        <button type="submit" class="btn btn-success waves-effect waves-light">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
